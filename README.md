@@ -4,7 +4,7 @@
 
 - Diagrama de estados
 
-![Diagrama de Estado](DiagramaDeEstado.png)
+![Diagrama de Estado](DiagramaDeEstados.png)
 
 - código para generarlo
 
@@ -14,7 +14,9 @@
     
     StandBy--> ValidarTarjeta : Insertar tarjeta
   
-    ValidarTarjeta --> StandBy : Tarjeta no válida
+    ValidarTarjeta --> ExpulsarTarjeta : Tarjeta no válida
+  
+    ExpulsarTarjeta --> StandBy : Tarjeta expulsada
   
     ValidarTarjeta --> ValidarPin : Tarjeta válida
     
@@ -30,7 +32,7 @@
     
     SeleccionTransaccion --> EjecutandoTransaccion : Elegir transacción
   
-    SeleccionTransaccion --> StandBy : Cerrar sesión
+    SeleccionTransaccion --> ExpulsarTarjeta : Cerrar sesión
     
     EjecutandoTransaccion --> SeleccionTransaccion : Transacción completada
   
@@ -40,5 +42,5 @@
 
   1. El sistema se matiene todo el rato en Stand By (en espera) hazta que una persona introduza una tarje de credito
   2. El sistema valida la tarjeta para que sea del banco actual y sea real y cuando lo hace puede pasar una de las 2 siguientes cosas
-  3. 
+  3. La tarjeta no es valida por lo cual devuelve la tarjeta
 
